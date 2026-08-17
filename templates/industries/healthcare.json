@@ -1,0 +1,73 @@
+{
+  "key": "healthcare",
+  "label": "Healthcare & medical",
+  "version": 1,
+  "complianceTemplate": "healthcare",
+  "description": "Clinics, practices, providers, and medical services.",
+  "questions": [
+    {
+      "id": "services",
+      "prompt": "Which services do you offer?",
+      "help": "Each becomes a candidate angle. Only list what you actually provide.",
+      "type": "multi_text",
+      "required": true,
+      "minItems": 1,
+      "maxItems": 30,
+      "mapsTo": "industry.services"
+    },
+    {
+      "id": "patientDemographics",
+      "prompt": "Who are your patients?",
+      "help": "Age range, conditions, situation. Shapes tone as much as targeting.",
+      "type": "long_text",
+      "required": true,
+      "mapsTo": "industry.patientDemographics"
+    },
+    {
+      "id": "regulatoryBody",
+      "prompt": "Which body regulates your advertising?",
+      "type": "single_select",
+      "required": true,
+      "options": [
+        { "value": "fda-us", "label": "FDA (United States)" },
+        { "value": "ftc-us", "label": "FTC (United States)" },
+        { "value": "mhra-uk", "label": "MHRA (United Kingdom)" },
+        { "value": "asa-uk", "label": "ASA / CAP (United Kingdom)" },
+        { "value": "ema-eu", "label": "EMA (European Union)" },
+        { "value": "tga-au", "label": "TGA (Australia)" },
+        { "value": "other", "label": "Other / multiple" }
+      ],
+      "mapsTo": "industry.regulatoryBody"
+    },
+    {
+      "id": "practitionerCredentials",
+      "prompt": "What credentials can be stated?",
+      "help": "Only credentials that are current and verifiable.",
+      "type": "multi_text",
+      "required": false,
+      "maxItems": 20,
+      "mapsTo": "industry.practitionerCredentials"
+    },
+    {
+      "id": "prohibitedTreatmentClaims",
+      "prompt": "Are there treatments you must never advertise outcomes for?",
+      "help": "Added to the compliance rule set as blocking terms.",
+      "type": "multi_text",
+      "required": false,
+      "maxItems": 30,
+      "mapsTo": "industry.prohibitedTreatmentClaims"
+    },
+    {
+      "id": "acceptsInsurance",
+      "prompt": "Do you accept insurance?",
+      "type": "single_select",
+      "required": false,
+      "options": [
+        { "value": "yes", "label": "Yes" },
+        { "value": "some", "label": "Some plans" },
+        { "value": "no", "label": "No / private pay" }
+      ],
+      "mapsTo": "industry.acceptsInsurance"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+ALTER TABLE "ad_accounts" ADD COLUMN "platform_config" jsonb;

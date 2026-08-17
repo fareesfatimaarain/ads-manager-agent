@@ -1,0 +1,60 @@
+{
+  "key": "real-estate",
+  "label": "Real estate & property",
+  "version": 1,
+  "complianceTemplate": "real-estate",
+  "description": "Agencies, brokerages, developments, and property management.",
+  "questions": [
+    {
+      "id": "propertyTypes",
+      "prompt": "What kinds of property do you handle?",
+      "type": "multi_select",
+      "required": true,
+      "minItems": 1,
+      "options": [
+        { "value": "residential-sale", "label": "Residential — for sale" },
+        { "value": "residential-rent", "label": "Residential — rental" },
+        { "value": "commercial", "label": "Commercial" },
+        { "value": "land", "label": "Land / development plots" },
+        { "value": "new-build", "label": "New build / off-plan" },
+        { "value": "luxury", "label": "Luxury / prestige" }
+      ],
+      "mapsTo": "industry.propertyTypes"
+    },
+    {
+      "id": "priceTiers",
+      "prompt": "What price bands do you work in?",
+      "help": "One per band, e.g. \"£250k–£400k\". Used to pitch copy at the right buyer.",
+      "type": "multi_text",
+      "required": true,
+      "minItems": 1,
+      "maxItems": 10,
+      "mapsTo": "industry.priceTiers"
+    },
+    {
+      "id": "serviceAreas",
+      "prompt": "Which areas do you cover?",
+      "type": "multi_text",
+      "required": true,
+      "minItems": 1,
+      "maxItems": 40,
+      "mapsTo": "industry.serviceAreas"
+    },
+    {
+      "id": "licenceNumber",
+      "prompt": "Licence or registration number",
+      "help": "Many jurisdictions require this in property advertising. It will be added as a required disclosure.",
+      "type": "text",
+      "required": false,
+      "mapsTo": "industry.licenceNumber"
+    },
+    {
+      "id": "sellingPoints",
+      "prompt": "What makes you different from other agents?",
+      "type": "multi_text",
+      "required": false,
+      "maxItems": 15,
+      "mapsTo": "industry.sellingPoints"
+    }
+  ]
+}

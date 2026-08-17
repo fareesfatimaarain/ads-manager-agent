@@ -1,0 +1,80 @@
+{
+  "key": "finance",
+  "label": "Financial promotions",
+  "version": 1,
+  "basedOn": "generic",
+  "description": "Layered on top of the generic set. Return guarantees and risk omission are the primary exposure in financial advertising.",
+  "rules": [
+    {
+      "id": "fin-guaranteed-returns",
+      "title": "Guaranteed or implied returns",
+      "severity": "BLOCK",
+      "mandatory": true,
+      "reason": "Guaranteeing investment returns is prohibited by every major financial regulator. There is no compliant phrasing for this.",
+      "appliesTo": ["headline", "primaryText", "imageConcept"],
+      "match": {
+        "kind": "FORBID_PATTERN",
+        "pattern": "\\b(guaranteed|guarantee|assured|risk[- ]free|no risk|certain)\\b.{0,40}\\b(returns?|profits?|gains?|income|yield)\\b",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "fin-get-rich",
+      "title": "Get-rich or effortless-wealth framing",
+      "severity": "BLOCK",
+      "mandatory": true,
+      "reason": "Framing an investment as easy or fast money is treated as misleading by regulators regardless of any disclaimer.",
+      "appliesTo": ["headline", "primaryText"],
+      "match": {
+        "kind": "FORBID_TERMS",
+        "terms": ["get rich", "quick profit", "easy money", "double your money", "passive income guaranteed", "financial freedom overnight"]
+      }
+    },
+    {
+      "id": "fin-risk-warning",
+      "title": "Capital-at-risk warning",
+      "severity": "BLOCK",
+      "mandatory": true,
+      "reason": "Any ad that references returns, investment, or performance must carry a capital-at-risk warning.",
+      "appliesTo": ["primaryText"],
+      "match": {
+        "kind": "REQUIRE_WHEN",
+        "whenPattern": "\\b(invest|investment|returns?|portfolio|yield|performance|fund)\\b",
+        "whenFlags": "i",
+        "requireOneOf": [
+          "capital at risk",
+          "your capital is at risk",
+          "you may get back less than you invest",
+          "investments can go down"
+        ]
+      }
+    },
+    {
+      "id": "fin-past-performance",
+      "title": "Past performance without qualification",
+      "severity": "BLOCK",
+      "mandatory": true,
+      "reason": "Referencing past performance requires the standard statement that it does not indicate future results.",
+      "appliesTo": ["primaryText"],
+      "match": {
+        "kind": "REQUIRE_WHEN",
+        "whenPattern": "\\b(last year|historically|past performance|track record|returned \\d)\\b",
+        "whenFlags": "i",
+        "requireOneOf": ["past performance is not", "past performance does not", "not a guide to future"]
+      }
+    },
+    {
+      "id": "fin-advice-framing",
+      "title": "Copy that reads as personal advice",
+      "severity": "FLAG",
+      "mandatory": true,
+      "reason": "Unless you are authorised to give advice, copy must not tell an individual what they should do with their money.",
+      "appliesTo": ["headline", "primaryText"],
+      "match": {
+        "kind": "FORBID_PATTERN",
+        "pattern": "\\byou should (invest|buy|move your|switch)\\b",
+        "flags": "i"
+      }
+    }
+  ]
+}

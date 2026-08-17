@@ -1,0 +1,1315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AI Ad Manager — Client Briefing</title>
+<style>
+  @page {
+    size: A4;
+    margin: 19mm 17mm 17mm 17mm;
+  }
+
+  :root {
+    --paper:      #FBF8F2;
+    --paper-2:    #F4EFE4;
+    --ink:        #1C1B16;
+    --ink-soft:   #4A473C;
+    --ink-faint:  #7A7466;
+    --rule:       #D8D1C1;
+    --rule-soft:  #E7E1D4;
+    --rust:       #9A4A28;
+    --rust-pale:  #F0E2D9;
+    --green:      #3D5147;
+    --green-pale: #E2E8E2;
+    --ochre:      #8A6D1F;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Georgia, "Palatino Linotype", Palatino, "Book Antiqua", serif;
+    font-size: 10.2pt;
+    line-height: 1.55;
+    text-rendering: optimizeLegibility;
+  }
+
+  .page {
+    page-break-after: always;
+    position: relative;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ---------- type ---------- */
+
+  h1, h2, h3, h4 { font-weight: normal; margin: 0; }
+
+  .eyebrow {
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 7.6pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--rust);
+    font-weight: 600;
+  }
+
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    border-bottom: 1.6px solid var(--ink);
+    padding-bottom: 6px;
+    margin-bottom: 15px;
+  }
+  .sec-num {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--rust);
+    padding-top: 2px;
+  }
+  .sec-title {
+    font-size: 17.5pt;
+    letter-spacing: -0.012em;
+    line-height: 1.15;
+    flex: 1;
+  }
+
+  h3 {
+    font-size: 11.6pt;
+    margin: 16px 0 5px;
+    letter-spacing: -0.008em;
+    break-after: avoid;
+  }
+  h3.first { margin-top: 0; }
+
+  h4 {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 8.4pt;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+
+  p { margin: 0 0 8px; }
+  p.lead {
+    font-size: 12.4pt;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .dropcap::first-letter {
+    float: left;
+    font-size: 40pt;
+    line-height: 0.82;
+    padding: 4px 8px 0 0;
+    color: var(--rust);
+  }
+
+  em { font-style: italic; }
+  strong { font-weight: bold; }
+
+  a { color: var(--rust); }
+
+  /* ---------- cover ---------- */
+
+  .cover {
+    height: 246mm;
+    display: flex;
+    flex-direction: column;
+  }
+  .cover-rule {
+    height: 4px;
+    background: var(--ink);
+    margin-bottom: 5px;
+  }
+  .cover-rule-2 {
+    height: 1px;
+    background: var(--rust);
+    margin-bottom: 52px;
+  }
+  .cover-title {
+    font-size: 40pt;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    margin-bottom: 18px;
+  }
+  .cover-title .thin {
+    display: block;
+    color: var(--ink-faint);
+    font-style: italic;
+    font-size: 20pt;
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    margin-top: 10px;
+    max-width: 132mm;
+  }
+  .cover-sub {
+    font-size: 12.5pt;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 108mm;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+  }
+  .cover-spacer { flex: 1; }
+  .cover-meta {
+    display: flex;
+    gap: 34px;
+    border-top: 1px solid var(--rule);
+    padding-top: 14px;
+  }
+  .cover-meta div { flex: 1; }
+  .cover-meta .k {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 7.4pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 3px;
+    font-weight: 600;
+  }
+  .cover-meta .v { font-size: 10.5pt; }
+  .fill { color: var(--rust); border-bottom: 1px dotted var(--rust); }
+
+  /* ---------- contents ---------- */
+
+  .toc { border-top: 1px solid var(--rule); }
+  .toc-row {
+    display: flex;
+    gap: 16px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: baseline;
+  }
+  .toc-n {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 8pt;
+    font-weight: 700;
+    color: var(--rust);
+    width: 22px;
+    flex: none;
+  }
+  .toc-t { flex: 1; font-size: 11pt; }
+  .toc-d { color: var(--ink-faint); font-size: 9.4pt; flex: 1.5; font-style: italic; }
+
+  /* ---------- components ---------- */
+
+  .pull {
+    border-left: 3px solid var(--rust);
+    padding: 4px 0 4px 16px;
+    margin: 18px 0;
+    font-size: 12.6pt;
+    line-height: 1.45;
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  .panel {
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 13px 15px;
+    margin: 14px 0;
+    break-inside: avoid;
+  }
+  .panel.rust { background: var(--rust-pale); border-color: #E0C9BC; }
+  .panel.green { background: var(--green-pale); border-color: #C9D5CA; }
+
+  .cols {
+    display: flex;
+    gap: 22px;
+    margin: 14px 0;
+  }
+  .cols > * { flex: 1; }
+
+  .stack { display: flex; flex-direction: column; gap: 10px; margin: 14px 0; }
+
+  .item {
+    display: flex;
+    gap: 13px;
+    break-inside: avoid;
+  }
+  .item-n {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 8pt;
+    font-weight: 700;
+    color: var(--paper);
+    background: var(--ink);
+    width: 19px; height: 19px;
+    flex: none;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 2px;
+  }
+  .item-n.rust { background: var(--rust); }
+  .item-b { flex: 1; }
+  .item-b .t { font-weight: bold; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 9.7pt;
+    break-inside: avoid;
+  }
+  th {
+    text-align: left;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 7.6pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 600;
+    border-bottom: 1.4px solid var(--ink);
+    padding: 0 10px 6px 0;
+    vertical-align: bottom;
+  }
+  td {
+    padding: 6px 10px 6px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    vertical-align: top;
+  }
+  td:last-child, th:last-child { padding-right: 0; }
+  tr:last-child td { border-bottom: none; }
+  .num {
+    font-family: Consolas, "Lucida Console", monospace;
+    font-size: 9.2pt;
+    white-space: nowrap;
+  }
+
+  ul.tight { margin: 8px 0; padding-left: 17px; }
+  ul.tight li { margin-bottom: 5px; }
+
+  .never {
+    display: flex;
+    gap: 11px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    break-inside: avoid;
+  }
+  .never:last-child { border-bottom: none; }
+  .never .mark {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: 700;
+    color: var(--rust);
+    flex: none;
+    width: 15px;
+    font-size: 11pt;
+    line-height: 1.3;
+  }
+
+  figure { margin: 15px 0; break-inside: avoid; }
+  figcaption {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 7.8pt;
+    color: var(--ink-faint);
+    margin-top: 6px;
+    padding-top: 5px;
+    border-top: 1px solid var(--rule-soft);
+    letter-spacing: 0.01em;
+    line-height: 1.45;
+  }
+  svg { display: block; width: 100%; height: auto; }
+
+  .footer-note {
+    margin-top: 26px;
+    padding-top: 10px;
+    border-top: 1px solid var(--rule);
+    font-size: 8.6pt;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .glossary dt {
+    font-weight: bold;
+    margin-top: 11px;
+    font-size: 10.4pt;
+  }
+  .glossary dd {
+    margin: 2px 0 0;
+    color: var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================== COVER ============================== -->
+<section class="page cover">
+  <div class="cover-rule"></div>
+  <div class="cover-rule-2"></div>
+
+  <div class="eyebrow">Client Briefing &nbsp;·&nbsp; System Overview</div>
+
+  <h1 class="cover-title">
+    The AI Ad&nbsp;Manager
+    <span class="thin">How it builds, tests and manages your advertising</span>
+  </h1>
+
+  <p class="cover-sub">
+    An autonomous system that writes and designs ads, tests them properly,
+    and moves budget toward what works &mdash; inside limits you set, and
+    explaining every decision it makes.
+  </p>
+
+  <div class="cover-spacer"></div>
+
+  <div class="cover-meta">
+    <div>
+      <div class="k">Prepared for</div>
+      <div class="v"><span class="fill">&nbsp;&nbsp;client name&nbsp;&nbsp;</span></div>
+    </div>
+    <div>
+      <div class="k">Document</div>
+      <div class="v">Non-technical overview</div>
+    </div>
+    <div>
+      <div class="k">Date</div>
+      <div class="v">August 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== CONTENTS ============================== -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-num">&mdash;</div>
+    <h2 class="sec-title">What&rsquo;s in this document</h2>
+  </div>
+
+  <p>
+    This briefing explains what the system does, how it makes decisions, and what stops it
+    from making an expensive mistake. It is written to be read without any technical
+    background. Where a technical idea genuinely matters &mdash; and there are two or three
+    that do &mdash; it is explained in plain language rather than skipped.
+  </p>
+
+  <div class="toc">
+    <div class="toc-row"><div class="toc-n">01</div><div class="toc-t">The idea in one page</div><div class="toc-d">What the system is, and the single principle behind it</div></div>
+    <div class="toc-row"><div class="toc-n">02</div><div class="toc-t">The working cycle</div><div class="toc-d">Create, launch, measure, decide &mdash; and repeat</div></div>
+    <div class="toc-row"><div class="toc-n">03</div><div class="toc-t">Making the creative</div><div class="toc-d">How ads get written, and why each one is tagged with an idea</div></div>
+    <div class="toc-row"><div class="toc-n">04</div><div class="toc-t">Testing that actually holds up</div><div class="toc-d">Telling a real winner apart from a lucky run</div></div>
+    <div class="toc-row"><div class="toc-n">05</div><div class="toc-t">The three decisions</div><div class="toc-d">Scale, adjust, or stop &mdash; and what triggers each</div></div>
+    <div class="toc-row"><div class="toc-n">06</div><div class="toc-t">The safety system</div><div class="toc-d">Hard limits, and the things it may never do alone</div></div>
+    <div class="toc-row"><div class="toc-n">07</div><div class="toc-t">Who approves what</div><div class="toc-d">Where you stay in the loop, and where you don&rsquo;t need to be</div></div>
+    <div class="toc-row"><div class="toc-n">08</div><div class="toc-t">The written record</div><div class="toc-d">Why every decision is explainable after the fact</div></div>
+    <div class="toc-row"><div class="toc-n">09</div><div class="toc-t">How it&rsquo;s built</div><div class="toc-d">The architecture, and why it isn&rsquo;t tied to one ad platform</div></div>
+    <div class="toc-row"><div class="toc-n">10</div><div class="toc-t">When something goes wrong</div><div class="toc-d">Failures, retries, and why nothing happens twice</div></div>
+    <div class="toc-row"><div class="toc-n">11</div><div class="toc-t">What you&rsquo;ll see</div><div class="toc-d">The dashboard</div></div>
+    <div class="toc-row"><div class="toc-n">12</div><div class="toc-t">Glossary</div><div class="toc-d">Plain definitions for the handful of terms used</div></div>
+  </div>
+
+  <div class="panel rust">
+    <h4>A note on the examples</h4>
+    <p style="margin:0">
+      Figures used throughout &mdash; a &pound;50 cost per sale, a &pound;30 daily test budget &mdash;
+      are illustrative, chosen to make the arithmetic easy to follow. Your actual targets and
+      limits are set during configuration and can be changed at any time.
+    </p>
+  </div>
+</section>
+
+<!-- ============================== 01 ============================== -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <h2 class="sec-title">The idea in one page</h2>
+  </div>
+
+  <p class="lead dropcap">
+    Running paid advertising well is mostly a matter of attention. Somebody has to look at
+    what each ad is doing, work out which results mean something and which are noise, move
+    money toward what is working, and stop what isn&rsquo;t. Done properly this is slow,
+    repetitive, and easy to get wrong when you&rsquo;re tired or busy.
+  </p>
+
+  <p>
+    This system does that work continuously. It writes new ads, puts them into a controlled
+    test, watches how they perform, and then makes one of three calls: put more money behind
+    it, change one thing about it and try again, or stop it. It does this every day, for
+    every ad, without needing to be asked.
+  </p>
+
+  <p>
+    The difficult part is not the automation. It is making the automation trustworthy. Most
+    tools in this space fail in one of two directions: they are so cautious that they need
+    constant supervision and save nobody any time, or they act confidently on evidence that
+    doesn&rsquo;t support the decision &mdash; and spend real money doing it.
+  </p>
+
+  <div class="pull">
+    The system is allowed to be wrong. It is not allowed to be wrong expensively.
+    Every design decision in this document follows from that sentence.
+  </div>
+
+  <p>
+    That principle produces some specific behaviour. The system waits longer than feels
+    necessary before judging an ad, because early numbers are misleading in a predictable
+    direction. It holds a much higher bar for spending more than for spending less, because
+    those two mistakes cost very different amounts. It refuses to act at all when its
+    information is incomplete, rather than acting on the part it happens to have. And a set
+    of hard limits sits between every decision and your ad account &mdash; limits written
+    into the software itself, not instructions given to an AI and hoped for.
+  </p>
+
+  <div class="cols">
+    <div class="panel green" style="margin:16px 0 0">
+      <h4>What it handles</h4>
+      <ul class="tight" style="margin-bottom:0">
+        <li>Writing ad copy and generating imagery</li>
+        <li>Launching structured tests</li>
+        <li>Collecting and interpreting performance</li>
+        <li>Moving budget between ads</li>
+        <li>Stopping ads that don&rsquo;t work</li>
+        <li>Recording why it did each of these</li>
+      </ul>
+    </div>
+    <div class="panel" style="margin:16px 0 0">
+      <h4>What stays with you</h4>
+      <ul class="tight" style="margin-bottom:0">
+        <li>Who you&rsquo;re targeting</li>
+        <li>Overall budget ceilings</li>
+        <li>Approving increases in spend</li>
+        <li>Brand rules and claims</li>
+        <li>Starting and pausing campaigns</li>
+        <li>Anything the system flags for review</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== 02 ============================== -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <h2 class="sec-title">The working cycle</h2>
+  </div>
+
+  <p>
+    The system runs a continuous loop. Each pass through it produces new ads, gathers fresh
+    evidence about existing ones, and makes decisions where the evidence justifies one. The
+    important detail is the gate near the end: no decision reaches your ad account without
+    passing a safety check first, and no action happens until it has been written down.
+  </p>
+
+  <figure>
+    <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" role="img"
+         aria-label="Diagram of the four-stage working cycle: create, launch, measure, decide, then a safety check before any action.">
+      <defs>
+        <marker id="ar" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+          <path d="M0,0 L7.5,3.2 L0,6.4 z" fill="#4A473C"/>
+        </marker>
+        <marker id="ar-rust" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+          <path d="M0,0 L7.5,3.2 L0,6.4 z" fill="#9A4A28"/>
+        </marker>
+      </defs>
+
+      <!-- stage boxes. A 34px gutter is reserved on the left for the return path, so the
+           dashed line never crosses a box. -->
+      <g font-family="Georgia, serif">
+        <g>
+          <rect x="38" y="46" width="148" height="84" fill="#F4EFE4" stroke="#1C1B16" stroke-width="1.4"/>
+          <text x="52" y="70" font-family="Segoe UI, Arial" font-size="10" font-weight="700" fill="#9A4A28" letter-spacing="1.2">01</text>
+          <text x="52" y="92" font-size="14.5" fill="#1C1B16">Create</text>
+          <text x="52" y="110" font-size="10.5" fill="#4A473C">New ads written</text>
+          <text x="52" y="123" font-size="10.5" fill="#4A473C">and designed</text>
+        </g>
+        <g>
+          <rect x="210" y="46" width="148" height="84" fill="#F4EFE4" stroke="#1C1B16" stroke-width="1.4"/>
+          <text x="224" y="70" font-family="Segoe UI, Arial" font-size="10" font-weight="700" fill="#9A4A28" letter-spacing="1.2">02</text>
+          <text x="224" y="92" font-size="14.5" fill="#1C1B16">Launch</text>
+          <text x="224" y="110" font-size="10.5" fill="#4A473C">Small fixed budget,</text>
+          <text x="224" y="123" font-size="10.5" fill="#4A473C">fair conditions</text>
+        </g>
+        <g>
+          <rect x="382" y="46" width="148" height="84" fill="#F4EFE4" stroke="#1C1B16" stroke-width="1.4"/>
+          <text x="396" y="70" font-family="Segoe UI, Arial" font-size="10" font-weight="700" fill="#9A4A28" letter-spacing="1.2">03</text>
+          <text x="396" y="92" font-size="14.5" fill="#1C1B16">Measure</text>
+          <text x="396" y="110" font-size="10.5" fill="#4A473C">Wait for numbers</text>
+          <text x="396" y="123" font-size="10.5" fill="#4A473C">to settle</text>
+        </g>
+        <g>
+          <rect x="554" y="46" width="148" height="84" fill="#F4EFE4" stroke="#1C1B16" stroke-width="1.4"/>
+          <text x="568" y="70" font-family="Segoe UI, Arial" font-size="10" font-weight="700" fill="#9A4A28" letter-spacing="1.2">04</text>
+          <text x="568" y="92" font-size="14.5" fill="#1C1B16">Decide</text>
+          <text x="568" y="110" font-size="10.5" fill="#4A473C">Scale, adjust,</text>
+          <text x="568" y="123" font-size="10.5" fill="#4A473C">or stop</text>
+        </g>
+
+        <!-- arrows between stages -->
+        <line x1="190" y1="88" x2="204" y2="88" stroke="#4A473C" stroke-width="1.4" marker-end="url(#ar)"/>
+        <line x1="362" y1="88" x2="376" y2="88" stroke="#4A473C" stroke-width="1.4" marker-end="url(#ar)"/>
+        <line x1="534" y1="88" x2="548" y2="88" stroke="#4A473C" stroke-width="1.4" marker-end="url(#ar)"/>
+
+        <!-- down into gate -->
+        <line x1="628" y1="134" x2="628" y2="176" stroke="#9A4A28" stroke-width="1.6" marker-end="url(#ar-rust)"/>
+
+        <!-- gate -->
+        <rect x="354" y="180" width="348" height="56" fill="#F0E2D9" stroke="#9A4A28" stroke-width="1.6"/>
+        <text x="372" y="205" font-family="Segoe UI, Arial" font-size="9" font-weight="700"
+              fill="#9A4A28" letter-spacing="1.4">SAFETY CHECK &amp; WRITTEN RECORD</text>
+        <text x="372" y="223" font-size="10.5" fill="#4A473C">Every limit tested, and the reason recorded, before anything happens</text>
+
+        <!-- gate to action -->
+        <line x1="350" y1="208" x2="272" y2="208" stroke="#9A4A28" stroke-width="1.6" marker-end="url(#ar-rust)"/>
+        <rect x="94" y="180" width="170" height="56" fill="#E2E8E2" stroke="#3D5147" stroke-width="1.4"/>
+        <text x="110" y="205" font-family="Segoe UI, Arial" font-size="9" font-weight="700"
+              fill="#3D5147" letter-spacing="1.4">ACTION ON PLATFORM</text>
+        <text x="110" y="223" font-size="10.5" fill="#4A473C">Budget moved, or ad stopped</text>
+
+        <!-- return loop: down, around the left gutter, back into Create -->
+        <path d="M 179 236 L 179 268 L 16 268 L 16 88 L 31 88" fill="none" stroke="#7A7466"
+              stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#ar)"/>
+        <text x="200" y="272" font-size="10.5" font-style="italic" fill="#7A7466">what was learned feeds the next round of creative</text>
+      </g>
+    </svg>
+    <figcaption>The cycle runs daily. Stages 3 and 4 apply to every ad currently running; stage 1 produces replacements for those that were stopped.</figcaption>
+  </figure>
+
+  <h3>Why the loop closes</h3>
+  <p>
+    The dotted line matters more than it looks. When an ad is stopped or scaled, the system
+    doesn&rsquo;t just record the outcome &mdash; it records <em>which idea</em> that ad was
+    testing. Over time this accumulates into a picture of what actually persuades your
+    customers, and that picture shapes what gets written next. The system is not only
+    finding better ads, it is narrowing down better <em>angles</em>.
+  </p>
+</section>
+
+<!-- ============================== 03 ============================== -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <h2 class="sec-title">Making the creative</h2>
+  </div>
+
+  <p>
+    New ads are generated from three inputs: who you sell to, what you&rsquo;re offering, and
+    your brand kit. The brand kit holds your colours, fonts, tone of voice, and &mdash;
+    importantly &mdash; the words and claims you are not allowed to make.
+  </p>
+
+  <h3 class="first">Brand rules are applied while writing, not after</h3>
+  <p>
+    This is a small distinction with a large effect. Many systems generate freely and then
+    filter the output, which means a banned claim only gets caught if the filter happens to
+    recognise it. Here the constraints are part of the instruction that produces the ad in
+    the first place, so the system is not writing something it then has to be talked out of.
+    Anything that still slips through is caught before launch, but it is a second line of
+    defence rather than the only one.
+  </p>
+
+  <h3>Every ad carries the idea it is testing</h3>
+  <p>
+    When an ad is created, it is tagged with the angle it represents &mdash; the underlying
+    argument it is making. Two ads might both promote the same product while testing
+    completely different propositions: one leads on saving time, another on avoiding a risk,
+    a third on what other people think.
+  </p>
+
+  <div class="panel">
+    <h4>Why this matters commercially</h4>
+    <p style="margin:0">
+      Without the tag, a winning ad tells you only that a particular combination of words and
+      picture worked. With it, you learn that <em>a certain kind of argument</em> works on
+      your audience &mdash; which is a far more useful thing to know, because it tells you
+      what to make next rather than what to copy.
+    </p>
+  </div>
+
+  <h3>Images</h3>
+  <p>
+    Visuals are produced through a separate image service, working from a concept the system
+    has written to match the ad&rsquo;s angle and your brand palette. Video is supported by
+    the same structure and can be enabled when you want it. The system is deliberately not
+    locked to a single image provider &mdash; that part can be swapped without touching
+    anything else, so you are not exposed to one supplier&rsquo;s pricing or quality drift.
+  </p>
+
+  <h3>How many at once</h3>
+  <p>
+    Ads are launched in small groups rather than one at a time. A group tests several
+    distinct angles against each other simultaneously, which is both faster and more
+    informative than testing sequentially &mdash; the ads compete under the same conditions,
+    on the same days, against the same audience, so differences between them are meaningful
+    rather than a reflection of when they happened to run.
+  </p>
+
+  <div class="footer-note">
+    Each ad in a test group gets its own budget allocation rather than sharing one pot.
+    This is a technical necessity, not a preference: when several ads share a budget, the ad
+    platform decides how to divide attention between them, and it does so unevenly. That
+    unevenness would corrupt any comparison drawn afterwards.
+  </div>
+</section>
+
+<!-- ============================== 04 ============================== -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <h2 class="sec-title">Testing that actually holds up</h2>
+  </div>
+
+  <p class="lead">
+    Almost every expensive mistake an automated ad system makes comes from acting on
+    evidence that looked convincing and wasn&rsquo;t.
+  </p>
+
+  <h3 class="first">Problem one: early numbers lie, and always in the same direction</h3>
+  <p>
+    Someone clicks an ad today and buys three days later. The platform credits that sale back
+    to today &mdash; but not straight away. For about three days, the figures for any given
+    day keep rising as sales are attributed backwards.
+  </p>
+  <p>
+    A system judging yesterday&rsquo;s ads this morning is therefore working from incomplete
+    information &mdash; and the gap is not random. Sales are always <em>undercounted</em>,
+    never over, so every ad looks worse than it truly is and good ads get stopped for no
+    reason. This system waits for the figures to settle before treating them as final.
+  </p>
+
+  <h3>Problem two: small numbers look more meaningful than they are</h3>
+  <p>
+    Suppose one ad has produced three sales and another has produced one. Is the first three
+    times better? Almost certainly not &mdash; a gap that size happens constantly by chance
+    alone. But a naive system sees &ldquo;300% better&rdquo; and acts.
+  </p>
+  <p>
+    A formal statistical test runs before any decision, and it asks a second, separate
+    question: not just <em>&ldquo;is this better than the others?&rdquo;</em> but
+    <em>&ldquo;is this genuinely beating your target?&rdquo;</em> Being the best of four poor
+    ads is not a reason to spend more money.
+  </p>
+
+  <table>
+    <thead>
+      <tr><th style="width:31%">What was observed</th><th style="width:24%">Naive reading</th><th>What the system concludes</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="num">3 sales vs 1 sale</td>
+        <td>&ldquo;Three times better&rdquo;</td>
+        <td>Not enough evidence. A gap this size arises by chance routinely. Keep both running.</td>
+      </tr>
+      <tr>
+        <td class="num">1 sale at &pound;10 cost<br>(target: &pound;50)</td>
+        <td>&ldquo;Five times better than target&rdquo;</td>
+        <td>A single sale says almost nothing about the true cost. Confidence is low. Do not scale.</td>
+      </tr>
+      <tr>
+        <td class="num">40 sales at &pound;29 cost<br>(target: &pound;50)</td>
+        <td>&ldquo;Beating target&rdquo;</td>
+        <td>Agreed &mdash; and with high confidence the <em>true</em> cost is below target. Eligible to scale.</td>
+      </tr>
+      <tr>
+        <td class="num">&pound;110 spent, no sales<br>(target: &pound;50)</td>
+        <td>&ldquo;Give it more time&rdquo;</td>
+        <td>Spending more than twice the target with nothing to show is meaningful in itself. Stop it.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Problem three: checking every day finds winners that aren&rsquo;t there</h3>
+  <p>
+    This one is subtle and catches most systems out. If you test the same question every day
+    for a month, waiting for a result that looks impressive, something eventually will
+    &mdash; purely by chance. Checking repeatedly manufactures false winners.
+  </p>
+  <p>
+    The system counts how many times it has examined each ad and raises the bar accordingly:
+    evidence that convinces on the first look does not convince on the tenth. The same
+    applies across ads, since with enough candidates one will look good by accident.
+  </p>
+
+  <div class="panel rust">
+    <h4>The practical consequence</h4>
+    <p style="margin:0">
+      Together these corrections make the system act <em>less</em> often, and later, than a
+      simpler tool would. That is the intended trade: each prevents a specific, well-understood
+      way of confidently reaching the wrong conclusion and spending on it.
+    </p>
+  </div>
+</section>
+
+<!-- ============================== 05 ============================== -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <h2 class="sec-title">The three decisions</h2>
+  </div>
+
+  <p>
+    When an ad has accumulated enough evidence, the system reaches one of three conclusions.
+    Anything short of that is simply left alone to keep running.
+  </p>
+
+  <div class="stack">
+    <div class="item">
+      <div class="item-n">01</div>
+      <div class="item-b">
+        <div class="t">Scale &mdash; put more money behind it</div>
+        <p style="margin:3px 0 0">
+          Triggered when an ad is beating your target and the system is confident that
+          it is genuinely doing so rather than having a good week. Budget is raised by a
+          capped percentage &mdash; a fixed, configurable step, never a jump &mdash; and no
+          more than once in any 24-hour period. Raising a budget too fast disturbs the ad
+          platform&rsquo;s own delivery and often destroys the performance you were trying
+          to buy more of.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-n">02</div>
+      <div class="item-b">
+        <div class="t">Adjust &mdash; change one thing and try again</div>
+        <p style="margin:3px 0 0">
+          Most ads that fail don&rsquo;t fail completely. The picture works and the words
+          don&rsquo;t, or the reverse. When an ad is close to your target but not quite
+          there, the system creates a new version with exactly <em>one</em> element changed
+          &mdash; the headline or the image, never both &mdash; and runs it alongside the
+          original. Changing one thing at a time is what makes the result interpretable:
+          you learn which change mattered. Chains of adjustment are limited in depth so an
+          ad cannot spawn descendants indefinitely.
+        </p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-n rust">03</div>
+      <div class="item-b">
+        <div class="t">Stop &mdash; take it down</div>
+        <p style="margin:3px 0 0">
+          Triggered either by spending well past your target with nothing to show, or by
+          performing clearly and significantly worse than the other ads it is being tested
+          against. Because stopping an ad only forgoes a small test budget, while wrongly
+          scaling one spends real money, the evidence required to stop is deliberately
+          lower than the evidence required to scale.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <h3>One protection worth knowing about</h3>
+  <p>
+    An ad that is meeting your target is never stopped for being worse than its neighbours.
+    This sounds obvious but is easy to get wrong: if you always remove the weakest ad in a
+    group, the average of what remains rises, which makes the next-weakest ad look bad, and
+    so on. Left unchecked that logic works its way through the whole group and ends up
+    stopping profitable ads for the crime of sharing a test with an exceptional one. The
+    system only stops ads on <em>absolute</em> underperformance &mdash; missing your target
+    &mdash; not on relative standing alone.
+  </p>
+
+  <div class="panel green">
+    <h4>What the system will not do on its own</h4>
+    <p style="margin:0">
+      There is no fourth decision. The system does not change who your ads are shown to, does
+      not create new campaigns, does not alter your offer, and does not touch anything
+      outside the ads it launched itself. Those remain entirely with you.
+    </p>
+  </div>
+</section>
+
+<!-- ============================== 06 ============================== -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-num">06</div>
+    <h2 class="sec-title">The safety system</h2>
+  </div>
+
+  <p class="lead">
+    Between every decision and your ad account sits a set of hard limits, checked in the
+    software at the moment of action &mdash; not written into an instruction and hoped for.
+  </p>
+
+  <p>
+    That distinction is the most important thing in this document. A system merely
+    <em>told</em> not to exceed a limit can misread the instruction or reason its way around
+    it. A limit checked in code cannot be argued with: if an action breaches one, it does not
+    happen, and the refusal is recorded with its reason.
+  </p>
+
+  <figure>
+    <!-- viewBox is inset a little on each side so the outer boxes' strokes are not clipped. -->
+    <svg viewBox="-3 -2 727 220" xmlns="http://www.w3.org/2000/svg" role="img"
+         aria-label="Diagram showing a proposed action passing through guardrail checks to one of three outcomes: refused, awaiting approval, or carried out. All three are recorded.">
+      <defs>
+        <marker id="ar2" markerWidth="9" markerHeight="9" refX="7.5" refY="3.2" orient="auto">
+          <path d="M0,0 L7.5,3.2 L0,6.4 z" fill="#4A473C"/>
+        </marker>
+      </defs>
+      <g font-family="Georgia, serif">
+        <rect x="0" y="66" width="132" height="62" fill="#F4EFE4" stroke="#1C1B16" stroke-width="1.4"/>
+        <text x="14" y="92" font-size="12.5" fill="#1C1B16">Proposed</text>
+        <text x="14" y="110" font-size="12.5" fill="#1C1B16">action</text>
+
+        <line x1="136" y1="97" x2="164" y2="97" stroke="#4A473C" stroke-width="1.4" marker-end="url(#ar2)"/>
+
+        <rect x="170" y="34" width="180" height="126" fill="#F0E2D9" stroke="#9A4A28" stroke-width="1.8"/>
+        <text x="184" y="58" font-family="Segoe UI, Arial" font-size="9" font-weight="700" fill="#9A4A28" letter-spacing="1.3">EVERY LIMIT CHECKED</text>
+        <text x="184" y="79" font-size="10.5" fill="#4A473C">Spend caps</text>
+        <text x="184" y="96" font-size="10.5" fill="#4A473C">Rate of change</text>
+        <text x="184" y="113" font-size="10.5" fill="#4A473C">Data freshness</text>
+        <text x="184" y="130" font-size="10.5" fill="#4A473C">Account health</text>
+        <text x="184" y="147" font-size="10.5" fill="#4A473C">Forbidden actions</text>
+
+        <line x1="354" y1="97" x2="382" y2="97" stroke="#4A473C" stroke-width="1.4" marker-end="url(#ar2)"/>
+
+        <!-- three outcomes -->
+        <rect x="390" y="6" width="196" height="52" fill="#FBF8F2" stroke="#9A4A28" stroke-width="1.4"/>
+        <text x="404" y="28" font-size="12" fill="#9A4A28">Refused</text>
+        <text x="404" y="45" font-size="9.6" fill="#4A473C">A limit would be breached</text>
+
+        <rect x="390" y="71" width="196" height="52" fill="#FBF8F2" stroke="#8A6D1F" stroke-width="1.4"/>
+        <text x="404" y="93" font-size="12" fill="#8A6D1F">Awaiting your approval</text>
+        <text x="404" y="110" font-size="9.6" fill="#4A473C">Sound, but spends more money</text>
+
+        <rect x="390" y="136" width="196" height="52" fill="#FBF8F2" stroke="#3D5147" stroke-width="1.4"/>
+        <text x="404" y="158" font-size="12" fill="#3D5147">Carried out</text>
+        <text x="404" y="175" font-size="9.6" fill="#4A473C">Within all limits</text>
+
+        <!-- all to record -->
+        <path d="M 590 32 L 616 32 L 616 97" fill="none" stroke="#7A7466" stroke-width="1.1"/>
+        <path d="M 590 97 L 616 97" fill="none" stroke="#7A7466" stroke-width="1.1"/>
+        <path d="M 590 162 L 616 162 L 616 97" fill="none" stroke="#7A7466" stroke-width="1.1"/>
+        <line x1="616" y1="97" x2="644" y2="97" stroke="#4A473C" stroke-width="1.4" marker-end="url(#ar2)"/>
+
+        <rect x="650" y="52" width="70" height="90" fill="#E2E8E2" stroke="#3D5147" stroke-width="1.4"/>
+        <text x="662" y="88" font-size="11.5" fill="#3D5147">Written</text>
+        <text x="662" y="105" font-size="11.5" fill="#3D5147">record</text>
+      </g>
+    </svg>
+    <figcaption>All three outcomes are recorded, refusals included &mdash; a blocked action leaves a trail naming the limit that stopped it.</figcaption>
+  </figure>
+
+  <h3>The limits you set</h3>
+  <table>
+    <thead><tr><th style="width:40%">Limit</th><th>What it controls</th></tr></thead>
+    <tbody>
+      <tr><td>Maximum increase per change</td><td>How much a single budget rise may add, as a percentage.</td></tr>
+      <tr><td>Maximum new spend per day</td><td>Extra daily budget it may commit across the account in one day.</td></tr>
+      <tr><td>Absolute daily ceiling</td><td>A hard cap on combined daily budget, regardless of performance.</td></tr>
+      <tr><td>Per-ad floor and ceiling</td><td>Stops any single ad absorbing the entire budget.</td></tr>
+      <tr><td>Cooling-off period</td><td>Minimum time between two changes to the same ad.</td></tr>
+      <tr><td>Minimum evidence</td><td>How long an ad must run, and spend, before it can be judged at all.</td></tr>
+      <tr><td>Confidence thresholds</td><td>How certain it must be before stopping, and before scaling.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>The things it may never do</h3>
+  <div style="border-top:1.4px solid var(--ink); margin-top:10px">
+    <div class="never"><div class="mark">&times;</div><div>Change who your ads are shown to. Targeting always requires a person, regardless of any setting.</div></div>
+    <div class="never"><div class="mark">&times;</div><div>Leave a campaign with no ads running. Stopping the last ad effectively pauses that campaign &mdash; your call, not the system&rsquo;s.</div></div>
+    <div class="never"><div class="mark">&times;</div><div>Exceed the ad platform&rsquo;s own spend cap, in addition to your limits.</div></div>
+    <div class="never"><div class="mark">&times;</div><div>Act on stale or partially collected data. If figures are missing for any ad in a test group, the whole group is skipped that day.</div></div>
+    <div class="never"><div class="mark">&times;</div><div>Act when the connection to your ad account is unhealthy or its access has expired.</div></div>
+  </div>
+</section>
+
+<!-- ============================== 07 ============================== -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-num">07</div>
+    <h2 class="sec-title">Who approves what</h2>
+  </div>
+
+  <p>
+    Not every decision carries the same risk, so not every decision is treated the same way.
+    The split follows a simple logic: <strong>actions that stop money leaving your account
+    happen automatically; actions that cause more money to leave it need you.</strong>
+  </p>
+
+  <table>
+    <thead><tr><th style="width:26%">Decision</th><th style="width:26%">Handling</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Stop an ad</strong></td>
+        <td>Automatic</td>
+        <td>The worst case is a small amount of forgone opportunity on an ad that might have recovered. Waiting for approval costs more than the occasional wrong call.</td>
+      </tr>
+      <tr>
+        <td><strong>Adjust an ad</strong></td>
+        <td>Automatic</td>
+        <td>Launches at the same small controlled test budget as any new ad. The exposure is bounded and known in advance.</td>
+      </tr>
+      <tr>
+        <td><strong>Increase budget</strong></td>
+        <td>Your approval</td>
+        <td>The worst case here is real money spent on something that turns out not to work. That deserves a person, at least until the system has a track record you trust.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Approvals arrive as a short summary: what the system wants to do, what it observed, how
+    confident it is, and what the budget would move from and to. Approving takes one click.
+  </p>
+
+  <div class="panel">
+    <h4>Approvals expire</h4>
+    <p style="margin:0">
+      A pending approval is only valid for a set window &mdash; two days by default. After
+      that it lapses rather than sitting in a queue. Approving a four-day-old recommendation
+      would mean acting on evidence the system has since moved past, so instead it
+      re-examines the ad from scratch and proposes again if the case still holds.
+    </p>
+  </div>
+
+  <h3>Turning approval off</h3>
+  <p>
+    Once you are comfortable with how the system is behaving, budget increases can be moved
+    to automatic on a per-client basis. Nothing about the underlying checks changes &mdash;
+    every limit still applies exactly as before. The only difference is whether a person
+    confirms the step. This is deliberately a switch you throw when you&rsquo;ve seen enough,
+    rather than the starting position.
+  </p>
+
+  <div class="panel rust">
+    <h4>The master switch</h4>
+    <p style="margin:0">
+      There is also a single global control that halts all automated activity immediately.
+      When it is off, the system continues to gather data and form opinions, and continues to
+      write them down &mdash; but it makes no changes to your account whatsoever. This is
+      useful during busy trading periods, or any time you simply want everything to hold
+      still.
+    </p>
+  </div>
+</section>
+
+<!-- ============================== 08 ============================== -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-num">08</div>
+    <h2 class="sec-title">The written record</h2>
+  </div>
+
+  <p class="lead">
+    Every autonomous action is written down <em>before</em> it happens, not after. If the
+    record cannot be written, the action does not take place.
+  </p>
+
+  <p>
+    That ordering is deliberate and it is unusual. Most systems act first and log afterwards,
+    which means any failure between the two leaves you with something that happened and no
+    record of why. Reversing it guarantees the opposite: you may occasionally find a record
+    of an action that was interrupted before it completed, but you will never find a change
+    to your account that nobody can account for.
+  </p>
+
+  <h3>What each record contains</h3>
+  <table>
+    <thead><tr><th style="width:34%">Element</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>The decision</td><td>What was done, to which ad, and when.</td></tr>
+      <tr><td>The evidence</td><td>The exact figures the decision was based on &mdash; spend, sales, cost per sale, click rates &mdash; frozen as they stood at that moment.</td></tr>
+      <tr><td>The confidence</td><td>How certain the system was, and against what threshold. Recorded for every decision, including ones where it decided to do nothing.</td></tr>
+      <tr><td>The limits checked</td><td>Every safety limit tested, with the numbers behind each, and whether it passed.</td></tr>
+      <tr><td>The reasoning</td><td>A plain-language explanation of why this followed from that evidence.</td></tr>
+      <tr><td>The rules in force</td><td>Which version of your limits applied at the time, so a past decision can be understood in its own context rather than today&rsquo;s.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Why the historical figures are frozen</h3>
+  <p>
+    Performance data keeps changing after the fact, as described earlier. If the record simply
+    pointed at &ldquo;the numbers for that day&rdquo;, then looking back a month later would
+    show different figures than the ones the decision was actually made on &mdash; and the
+    reasoning would look wrong even when it had been perfectly sound. Instead, each record
+    keeps its own snapshot. You can always reconstruct not just what the system did, but what
+    it knew when it did it.
+  </p>
+
+  <div class="pull">
+    A client should be able to see why an ad was stopped without anyone having to go
+    digging through logs to reconstruct it.
+  </div>
+
+  <p>
+    In practice this means the dashboard can show, for any ad, a straightforward account:
+    what it was testing, what it cost, how it compared, what was decided, and why. No
+    technical interpretation required.
+  </p>
+</section>
+
+<!-- ============================== 09 ============================== -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-num">09</div>
+    <h2 class="sec-title">How it&rsquo;s built</h2>
+  </div>
+
+  <p>
+    The system is arranged in layers, each with one job. The arrangement matters for a
+    practical reason: it lets the same decision-making run across different ad platforms
+    without being rewritten, and lets any one piece be replaced without disturbing the rest.
+  </p>
+
+  <figure>
+    <!-- viewBox is inset a little on each side so the full-width bands keep their borders. -->
+    <svg viewBox="-2 -2 724 334" xmlns="http://www.w3.org/2000/svg" role="img"
+         aria-label="Layered architecture diagram: dashboard on top, then decision engine and safety limits, then creative generation and scheduling, then platform adapters, then the ad platforms themselves.">
+      <g font-family="Georgia, serif">
+        <!-- L1 -->
+        <rect x="0" y="0" width="720" height="52" fill="#E2E8E2" stroke="#3D5147" stroke-width="1.4"/>
+        <text x="18" y="24" font-family="Segoe UI, Arial" font-size="8.6" font-weight="700" fill="#3D5147" letter-spacing="1.3">WHAT YOU SEE</text>
+        <text x="18" y="42" font-size="12" fill="#1C1B16">Dashboard &mdash; performance, decisions, approvals, reports</text>
+
+        <!-- L2 -->
+        <rect x="0" y="62" width="720" height="76" fill="#F0E2D9" stroke="#9A4A28" stroke-width="1.8"/>
+        <text x="18" y="86" font-family="Segoe UI, Arial" font-size="8.6" font-weight="700" fill="#9A4A28" letter-spacing="1.3">THE JUDGEMENT</text>
+        <text x="18" y="106" font-size="12" fill="#1C1B16">Decision engine &mdash; fixed rules, statistical tests, no AI improvisation</text>
+        <text x="18" y="126" font-size="12" fill="#1C1B16">Safety limits &mdash; checked here, at the moment of action</text>
+
+        <!-- L3 -->
+        <rect x="0" y="148" width="352" height="66" fill="#F4EFE4" stroke="#1C1B16" stroke-width="1.4"/>
+        <text x="18" y="172" font-family="Segoe UI, Arial" font-size="8.6" font-weight="700" fill="#7A7466" letter-spacing="1.3">THE WORK</text>
+        <text x="18" y="192" font-size="12" fill="#1C1B16">Creative generation</text>
+        <text x="18" y="207" font-size="10" fill="#4A473C">Copywriting and imagery, brand rules applied</text>
+
+        <rect x="368" y="148" width="352" height="66" fill="#F4EFE4" stroke="#1C1B16" stroke-width="1.4"/>
+        <text x="386" y="172" font-family="Segoe UI, Arial" font-size="8.6" font-weight="700" fill="#7A7466" letter-spacing="1.3">THE CLOCK</text>
+        <text x="386" y="192" font-size="12" fill="#1C1B16">Scheduling and queued work</text>
+        <text x="386" y="207" font-size="10" fill="#4A473C">Daily cycles, retries, background jobs</text>
+
+        <!-- L4 -->
+        <rect x="0" y="224" width="720" height="58" fill="#F4EFE4" stroke="#1C1B16" stroke-width="1.4"/>
+        <text x="18" y="247" font-family="Segoe UI, Arial" font-size="8.6" font-weight="700" fill="#7A7466" letter-spacing="1.3">THE TRANSLATOR</text>
+        <text x="18" y="268" font-size="12" fill="#1C1B16">Platform adapters &mdash; one per ad platform, each speaking its own dialect</text>
+
+        <!-- L5 -->
+        <rect x="0" y="292" width="232" height="38" fill="#FBF8F2" stroke="#7A7466" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <text x="18" y="316" font-size="11.5" fill="#4A473C">Meta</text>
+        <rect x="244" y="292" width="232" height="38" fill="#FBF8F2" stroke="#7A7466" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <text x="262" y="316" font-size="11.5" fill="#4A473C">Google Ads</text>
+        <rect x="488" y="292" width="232" height="38" fill="#FBF8F2" stroke="#7A7466" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <text x="506" y="316" font-size="11.5" fill="#4A473C">TikTok</text>
+      </g>
+    </svg>
+    <figcaption>Each layer speaks only to the ones directly above and below it. The decision engine has no knowledge of which ad platform it is operating on.</figcaption>
+  </figure>
+
+  <h3>Why the translator layer exists</h3>
+  <p>
+    Every ad platform has its own vocabulary, its own limits on how often you may talk to it,
+    and its own habits. All of that is contained inside the adapter for that platform.
+    Above it, everything works in neutral terms &mdash; an ad, a budget, a sale.
+  </p>
+  <p>
+    The commercial benefit is straightforward: adding a new ad platform means writing one new
+    translator, not rebuilding the system. The judgement, the safety limits, and the record
+    keeping are all unchanged, so a second platform inherits the same standards as the first
+    on day one rather than needing to earn them again.
+  </p>
+
+  <h3>Security of your account access</h3>
+  <p>
+    The system connects to your ad accounts through the platforms&rsquo; official
+    authorisation process &mdash; the same consent screen you would see connecting any
+    approved tool. It never asks for and never stores your password. The access credentials
+    it does hold are encrypted at rest, are never displayed anywhere in the interface, and
+    never appear in reports or diagnostic records. Access can be withdrawn by you at any
+    time from within the ad platform itself, without our involvement.
+  </p>
+</section>
+
+<!-- ============================== 10 ============================== -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-num">10</div>
+    <h2 class="sec-title">When something goes wrong</h2>
+  </div>
+
+  <p>
+    Ad platforms go down, time out, and rate-limit. Any system that talks to them constantly
+    will hit failures. What matters is what it does next.
+  </p>
+
+  <h3 class="first">Nothing happens twice</h3>
+  <p>
+    The most dangerous failure in a system like this is not an error &mdash; it is an
+    <em>uncertain</em> error. A budget increase is sent, the connection drops, and no reply
+    comes back. Did it take effect or not? A system that simply tries again risks applying
+    the same increase twice.
+  </p>
+  <p>
+    Every instruction sent to an ad platform therefore carries a unique reference, and every
+    budget instruction is expressed as a destination rather than a movement &mdash;
+    &ldquo;set this to &pound;36&rdquo;, never &ldquo;add &pound;6&rdquo;. Applying that same
+    instruction twice produces exactly the same result as applying it once. Before any retry,
+    the system also checks whether the earlier attempt actually landed.
+  </p>
+
+  <h3>It notices when someone else made a change</h3>
+  <p>
+    If a person adjusts a budget directly in the ad platform after the system formed its
+    plan, the system detects the discrepancy and abandons its action rather than overwriting
+    the change. It then re-examines the ad with current information. Your manual changes are
+    never silently undone.
+  </p>
+
+  <h3>Repeated failures stop the system trying</h3>
+  <p>
+    When a platform fails persistently, the system stops attempting rather than hammering it
+    &mdash; which would risk the account being rate-limited or suspended. Attempts resume
+    automatically once the platform recovers.
+  </p>
+
+  <h3>Nothing is dropped silently</h3>
+  <p>
+    Any action that cannot be completed after reasonable retries is set aside in a queue that
+    a person reviews. It is never quietly abandoned. The one outcome the system will not
+    produce is something that was supposed to happen, didn&rsquo;t, and nobody found out.
+  </p>
+
+  <div class="panel green">
+    <h4>Incomplete information means no decision</h4>
+    <p style="margin:0">
+      If performance data cannot be collected for some ads in a test group, the system does
+      not proceed using the ads it did manage to read. Comparing the ones that happened to
+      report against a partial picture of the rest produces a confident answer drawn from a
+      distorted comparison &mdash; which is worse than no answer. The whole group is skipped
+      until the picture is complete again.
+    </p>
+  </div>
+</section>
+
+<!-- ============================== 11 ============================== -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-num">11</div>
+    <h2 class="sec-title">What you&rsquo;ll see</h2>
+  </div>
+
+  <p>
+    The dashboard is built around one question: <em>what is happening to my money, and
+    why?</em> Everything else is secondary to answering that clearly.
+  </p>
+
+  <div class="stack">
+    <div class="item">
+      <div class="item-n">01</div>
+      <div class="item-b">
+        <div class="t">Live position</div>
+        <p style="margin:3px 0 0">
+          What is running now, what each ad is costing, and how the whole account is
+          performing against your targets. Ads move visibly between stages &mdash; testing,
+          scaling, stopped &mdash; so a change of status is something you notice rather than
+          something you have to go looking for.
+        </p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-n">02</div>
+      <div class="item-b">
+        <div class="t">Decision history</div>
+        <p style="margin:3px 0 0">
+          Every action taken, in plain language, with the figures behind it. Written to be
+          read by you, not interpreted by a specialist.
+        </p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-n">03</div>
+      <div class="item-b">
+        <div class="t">Approvals</div>
+        <p style="margin:3px 0 0">
+          Anything waiting on you, with the reasoning attached and the time remaining before
+          it lapses.
+        </p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-n">04</div>
+      <div class="item-b">
+        <div class="t">Creative library</div>
+        <p style="margin:3px 0 0">
+          Every ad produced, grouped by the idea it was testing, with results attached &mdash;
+          so you can see which arguments are working on your audience, not just which
+          individual ads did well.
+        </p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-n">05</div>
+      <div class="item-b">
+        <div class="t">Limits and settings</div>
+        <p style="margin:3px 0 0">
+          Your targets, caps and thresholds, adjustable at any time. Changes take effect on
+          the next cycle, and past decisions remain interpretable against the limits that
+          applied when they were made.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h4>On accessibility</h4>
+    <p style="margin:0">
+      The interface works on a phone as well as a desktop, is fully navigable by keyboard,
+      and respects the system setting that reduces motion for people who find animation
+      uncomfortable. Movement in the interface is used to show something changing
+      &mdash; an ad moving from testing to scaling &mdash; rather than for decoration.
+    </p>
+  </div>
+</section>
+
+<!-- ============================== 12 ============================== -->
+<section class="page">
+  <div class="sec-head">
+    <div class="sec-num">12</div>
+    <h2 class="sec-title">Glossary</h2>
+  </div>
+
+  <dl class="glossary">
+    <dt>Ad variant</dt>
+    <dd>One individual ad &mdash; a specific headline, body text, call to action and image.</dd>
+
+    <dt>Angle</dt>
+    <dd>The underlying argument an ad is making, as distinct from its exact wording. &ldquo;Saves you time&rdquo; is an angle; a particular sentence about saving time is a variant of it.</dd>
+
+    <dt>Attribution settling</dt>
+    <dd>The delay between someone acting on an ad and the ad platform crediting that action to the right day. Reported figures for recent days keep rising for roughly three days afterwards.</dd>
+
+    <dt>Confidence</dt>
+    <dd>How likely it is that an observed difference reflects something real rather than chance. Expressed as a percentage; the system requires a high figure before spending more money and a somewhat lower one before stopping an ad.</dd>
+
+    <dt>Cost per acquisition (CPA)</dt>
+    <dd>What you pay, on average, for one sale or lead. Total spend divided by the number of conversions.</dd>
+
+    <dt>Return on ad spend (ROAS)</dt>
+    <dd>Revenue produced for each unit of currency spent. A ROAS of 3 means &pound;3 back for every &pound;1 spent.</dd>
+
+    <dt>Conversion</dt>
+    <dd>The action you are paying for &mdash; a purchase, an enquiry, a signup. Defined by you when the account is configured.</dd>
+
+    <dt>Guardrail</dt>
+    <dd>A hard limit enforced by the software itself. Distinct from a setting or a preference: a guardrail cannot be exceeded, only changed by you.</dd>
+
+    <dt>Test group</dt>
+    <dd>A set of ads launched together and compared against one another. Grouping them makes the comparison fair, because they run at the same time under the same conditions.</dd>
+
+    <dt>Statistical significance</dt>
+    <dd>A formal test of whether a difference between two things is large enough, given how much data there is, to be treated as real rather than coincidence.</dd>
+  </dl>
+
+  <div style="margin-top:38px; border-top:4px solid var(--ink); padding-top:5px">
+    <div style="height:1px;background:var(--rust);margin-bottom:16px"></div>
+    <p style="font-size:9.6pt; color:var(--ink-faint); font-style:italic; margin:0">
+      Questions about anything in this document are welcome, including the parts that seemed
+      too technical to include. Nothing here is settled &mdash; targets, limits and thresholds
+      are all configurable, and the sensible values for your account are best decided
+      together once there is real data to look at.
+    </p>
+  </div>
+</section>
+
+</body>
+</html>

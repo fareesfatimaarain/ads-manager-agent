@@ -1,0 +1,58 @@
+{
+  "key": "real-estate",
+  "label": "Property advertising",
+  "version": 1,
+  "basedOn": "generic",
+  "description": "Layered on top of the generic set. Fair-housing language and investment framing are the primary exposure in property advertising.",
+  "rules": [
+    {
+      "id": "re-fair-housing",
+      "title": "Fair housing — preference or exclusion",
+      "severity": "BLOCK",
+      "mandatory": true,
+      "reason": "Property advertising must not express a preference about who lives somewhere. This is unlawful in most jurisdictions and rejected by ad platforms.",
+      "appliesTo": ["headline", "primaryText", "imageConcept"],
+      "match": {
+        "kind": "FORBID_PATTERN",
+        "pattern": "\\b(ideal for|perfect for|suits?|no)\\s+(families|couples|singles|professionals only|students|children|christian|muslim|jewish|elderly)\\b",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "re-investment-return",
+      "title": "Property framed as a guaranteed investment",
+      "severity": "BLOCK",
+      "mandatory": true,
+      "reason": "Promising appreciation or rental yield turns a property ad into an unregulated financial promotion.",
+      "appliesTo": ["headline", "primaryText"],
+      "match": {
+        "kind": "FORBID_PATTERN",
+        "pattern": "\\b(guaranteed|assured|certain)\\b.{0,30}\\b(yield|return|appreciation|rental income|capital growth)\\b",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "re-price-accuracy",
+      "title": "Prices stated without qualification",
+      "severity": "FLAG",
+      "mandatory": false,
+      "reason": "Advertised prices should indicate whether they are guide prices or fixed, to avoid a misleading-pricing complaint.",
+      "appliesTo": ["primaryText"],
+      "match": {
+        "kind": "REQUIRE_WHEN",
+        "whenPattern": "[£$€]\\s?\\d",
+        "whenFlags": "",
+        "requireOneOf": ["guide price", "from", "starting at", "offers over", "asking price"]
+      }
+    },
+    {
+      "id": "re-licence-disclosure",
+      "title": "Agent licence disclosure",
+      "severity": "FLAG",
+      "mandatory": false,
+      "reason": "Many jurisdictions require a licence or registration number in property advertising.",
+      "appliesTo": ["primaryText"],
+      "match": { "kind": "REQUIRE_ONE_OF", "terms": ["licence", "license", "registered", "reg no", "regulated by"] }
+    }
+  ]
+}

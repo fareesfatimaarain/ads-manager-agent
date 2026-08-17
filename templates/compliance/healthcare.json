@@ -1,0 +1,82 @@
+{
+  "key": "healthcare",
+  "label": "Healthcare advertising",
+  "version": 1,
+  "basedOn": "generic",
+  "description": "Layered on top of the generic set. Blocks outcome and cure claims, which are the primary regulatory exposure in medical advertising.",
+  "rules": [
+    {
+      "id": "hc-cure-claims",
+      "title": "Cure or permanent-fix claims",
+      "severity": "BLOCK",
+      "mandatory": true,
+      "reason": "Claiming to cure, heal, or permanently fix a condition is prohibited in medical advertising in every major jurisdiction.",
+      "appliesTo": ["headline", "primaryText", "imageConcept"],
+      "match": {
+        "kind": "FORBID_TERMS",
+        "terms": ["cure", "cures", "cured", "heals", "permanent fix", "eliminates the disease", "reverses"]
+      }
+    },
+    {
+      "id": "hc-guaranteed-outcome",
+      "title": "Guaranteed clinical outcomes",
+      "severity": "BLOCK",
+      "mandatory": true,
+      "reason": "No clinical outcome may be guaranteed. Results vary between patients and this cannot be promised.",
+      "appliesTo": ["headline", "primaryText"],
+      "match": {
+        "kind": "FORBID_PATTERN",
+        "pattern": "\\b(guaranteed|guarantee|promise|assured)\\b.{0,40}\\b(results?|outcomes?|recovery|relief|weight loss)\\b",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "hc-pain-free",
+      "title": "Absolute safety or painlessness claims",
+      "severity": "BLOCK",
+      "mandatory": true,
+      "reason": "No procedure is entirely without risk. Claiming \"no risk\", \"completely safe\", or \"painless\" is a misrepresentation.",
+      "appliesTo": ["headline", "primaryText"],
+      "match": {
+        "kind": "FORBID_TERMS",
+        "terms": ["completely safe", "no risk", "risk-free", "totally painless", "zero side effects", "no side effects"]
+      }
+    },
+    {
+      "id": "hc-results-disclaimer",
+      "title": "Results-vary disclaimer",
+      "severity": "FLAG",
+      "mandatory": true,
+      "reason": "Ads that reference results should carry a statement that outcomes differ between patients.",
+      "appliesTo": ["primaryText"],
+      "match": {
+        "kind": "REQUIRE_WHEN",
+        "whenPattern": "\\b(results?|outcomes?|improvement|recovery)\\b",
+        "whenFlags": "i",
+        "requireOneOf": ["results vary", "individual results", "outcomes vary", "results may vary"]
+      }
+    },
+    {
+      "id": "hc-testimonial-claims",
+      "title": "Patient testimonials as evidence",
+      "severity": "FLAG",
+      "mandatory": false,
+      "reason": "Testimonials presented as typical outcomes are restricted by most regulators. Ensure they are labelled and not presented as representative.",
+      "appliesTo": ["primaryText"],
+      "match": { "kind": "FORBID_TERMS", "terms": ["patients say", "our patients all", "everyone who tried"] }
+    },
+    {
+      "id": "hc-urgency-medical",
+      "title": "Urgency applied to a medical decision",
+      "severity": "BLOCK",
+      "mandatory": true,
+      "reason": "Pressuring someone toward a medical decision with a deadline is prohibited. Health decisions must not be rushed by advertising.",
+      "appliesTo": ["headline", "primaryText"],
+      "match": {
+        "kind": "FORBID_PATTERN",
+        "pattern": "\\b(book|call|act)\\b.{0,25}\\b(today only|before it's too late|limited time|hurry)\\b",
+        "flags": "i"
+      }
+    }
+  ]
+}

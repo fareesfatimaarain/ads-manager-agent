@@ -1,0 +1,110 @@
+{
+  "key": "core",
+  "label": "Universal brand core",
+  "version": 1,
+  "description": "Asked of every brand regardless of industry. Industry templates add to this, never replace it.",
+  "questions": [
+    {
+      "id": "brandName",
+      "prompt": "What is the brand called?",
+      "help": "Exactly as it should appear in an ad — including capitalisation.",
+      "type": "text",
+      "required": true,
+      "mapsTo": "core.brandName"
+    },
+    {
+      "id": "offering",
+      "prompt": "What do you sell, in one or two sentences?",
+      "help": "Plain language. What someone gets, and why it is worth paying for.",
+      "type": "long_text",
+      "required": true,
+      "mapsTo": "core.offering"
+    },
+    {
+      "id": "targetAudience",
+      "prompt": "Who is it for?",
+      "help": "The more specific the better — 'facilities managers at mid-size warehouses' beats 'businesses'.",
+      "type": "long_text",
+      "required": true,
+      "mapsTo": "core.targetAudience"
+    },
+    {
+      "id": "tone",
+      "prompt": "How should the brand sound?",
+      "help": "Pick the closest, then refine in the next question.",
+      "type": "single_select",
+      "required": true,
+      "options": [
+        { "value": "plain-direct", "label": "Plain and direct", "hint": "No flourish. Says the thing." },
+        { "value": "warm-personal", "label": "Warm and personal", "hint": "Conversational, human." },
+        { "value": "authoritative", "label": "Authoritative", "hint": "Expert, measured, credible." },
+        { "value": "energetic", "label": "Energetic", "hint": "Punchy, urgent, high-contrast." },
+        { "value": "premium-restrained", "label": "Premium and restrained", "hint": "Quiet confidence, few words." }
+      ],
+      "mapsTo": "core.toneKey"
+    },
+    {
+      "id": "toneNotes",
+      "prompt": "Anything about the voice we should know?",
+      "help": "Words you always use, words you never use, how formal, whether humour is welcome.",
+      "type": "long_text",
+      "required": false,
+      "mapsTo": "core.toneNotes"
+    },
+    {
+      "id": "values",
+      "prompt": "What does the brand stand for?",
+      "help": "Three to five. These shape which arguments the system is willing to make.",
+      "type": "multi_text",
+      "required": true,
+      "minItems": 1,
+      "maxItems": 8,
+      "mapsTo": "core.values"
+    },
+    {
+      "id": "palette",
+      "prompt": "Brand colours",
+      "help": "Add each colour with a name. Used in generated imagery.",
+      "type": "color_list",
+      "required": true,
+      "minItems": 1,
+      "maxItems": 8,
+      "mapsTo": "core.palette"
+    },
+    {
+      "id": "fonts",
+      "prompt": "Typefaces",
+      "help": "Display face for headings, body face for everything else.",
+      "type": "font_pair",
+      "required": false,
+      "mapsTo": "core.fonts"
+    },
+    {
+      "id": "bannedWords",
+      "prompt": "Words the brand never uses",
+      "help": "Added on top of whatever your industry's compliance rules already forbid.",
+      "type": "multi_text",
+      "required": false,
+      "maxItems": 50,
+      "mapsTo": "core.bannedWords"
+    },
+    {
+      "id": "requiredDisclaimers",
+      "prompt": "Text that must appear in every ad",
+      "help": "Leave empty unless legal or a regulator requires it.",
+      "type": "multi_text",
+      "required": false,
+      "maxItems": 10,
+      "mapsTo": "core.requiredDisclaimers"
+    },
+    {
+      "id": "competitors",
+      "prompt": "Who do you compete with?",
+      "help": "Used to avoid accidentally echoing their positioning.",
+      "type": "multi_text",
+      "required": false,
+      "maxItems": 20,
+      "mapsTo": "core.competitors"
+    }
+  ]
+}

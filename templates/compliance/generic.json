@@ -1,0 +1,76 @@
+{
+  "key": "generic",
+  "label": "Safe advertising practices",
+  "version": 1,
+  "description": "The floor. Applied to every brand, and used on its own for industries with no specific template — so an unlisted industry is never generated unchecked.",
+  "rules": [
+    {
+      "id": "gen-absolute-claims",
+      "title": "Unqualified absolute claims",
+      "severity": "FLAG",
+      "mandatory": true,
+      "reason": "Absolute claims like \"best\" or \"number one\" need substantiation. Add evidence to your proof points, or soften the wording.",
+      "appliesTo": ["headline", "primaryText"],
+      "match": {
+        "kind": "FORBID_TERMS",
+        "terms": ["the best", "number one", "#1", "world's best", "unbeatable", "unrivalled", "unrivaled"]
+      }
+    },
+    {
+      "id": "gen-guarantee",
+      "title": "Guarantees without qualification",
+      "severity": "FLAG",
+      "mandatory": true,
+      "reason": "\"Guaranteed\" implies a promise you may be held to. Use it only where the guarantee is real and stated.",
+      "appliesTo": ["headline", "primaryText"],
+      "match": { "kind": "FORBID_TERMS", "terms": ["guaranteed", "guarantee", "100% guaranteed"] }
+    },
+    {
+      "id": "gen-false-urgency",
+      "title": "Manufactured urgency",
+      "severity": "FLAG",
+      "mandatory": false,
+      "reason": "Urgency claims must be true. If the deadline is real, keep it; if not, this misleads.",
+      "appliesTo": ["headline", "primaryText"],
+      "match": {
+        "kind": "FORBID_TERMS",
+        "terms": ["last chance", "final hours", "ends tonight", "only a few left", "act now or"]
+      }
+    },
+    {
+      "id": "gen-discrimination",
+      "title": "Targeting language about protected characteristics",
+      "severity": "BLOCK",
+      "mandatory": true,
+      "reason": "Ad copy must not select or exclude people by a protected characteristic. Most ad platforms reject this outright.",
+      "appliesTo": ["headline", "primaryText", "imageConcept"],
+      "match": {
+        "kind": "FORBID_PATTERN",
+        "pattern": "\\b(only|no|not for)\\s+(men|women|whites?|blacks?|asians?|christians?|muslims?|jews?|disabled|elderly|young people)\\b",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "gen-free-misuse",
+      "title": "\"Free\" attached to a paid offer",
+      "severity": "FLAG",
+      "mandatory": false,
+      "reason": "\"Free\" must mean free with no purchase required. If conditions apply, state them.",
+      "appliesTo": ["headline"],
+      "match": { "kind": "FORBID_PATTERN", "pattern": "\\bfree\\b.*\\b(when you buy|with purchase|after)\\b", "flags": "i" }
+    },
+    {
+      "id": "gen-personal-attack",
+      "title": "Disparaging a named competitor",
+      "severity": "BLOCK",
+      "mandatory": true,
+      "reason": "Naming a competitor negatively invites a legal complaint and is rejected by most platforms.",
+      "appliesTo": ["headline", "primaryText"],
+      "match": {
+        "kind": "FORBID_PATTERN",
+        "pattern": "\\b(better than|beats|unlike)\\s+[A-Z][a-zA-Z]{2,}\\b",
+        "flags": ""
+      }
+    }
+  ]
+}

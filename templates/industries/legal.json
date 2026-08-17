@@ -1,0 +1,63 @@
+{
+  "key": "legal",
+  "label": "Legal services",
+  "version": 1,
+  "complianceTemplate": "legal",
+  "description": "Law firms, solicitors, attorneys, and legal service providers.",
+  "questions": [
+    {
+      "id": "practiceAreas",
+      "prompt": "What areas of law do you practise?",
+      "type": "multi_text",
+      "required": true,
+      "minItems": 1,
+      "maxItems": 30,
+      "mapsTo": "industry.practiceAreas"
+    },
+    {
+      "id": "jurisdictions",
+      "prompt": "Where are you admitted to practise?",
+      "help": "Advertising rules for lawyers are jurisdiction-specific and strict about this.",
+      "type": "multi_text",
+      "required": true,
+      "minItems": 1,
+      "maxItems": 20,
+      "mapsTo": "industry.jurisdictions"
+    },
+    {
+      "id": "regulatoryBody",
+      "prompt": "Which body regulates your conduct?",
+      "type": "single_select",
+      "required": true,
+      "options": [
+        { "value": "sra-uk", "label": "SRA (England & Wales)" },
+        { "value": "lss-scot", "label": "Law Society of Scotland" },
+        { "value": "state-bar-us", "label": "State Bar (United States)" },
+        { "value": "lsbc-ca", "label": "Law Society (Canada)" },
+        { "value": "other", "label": "Other" }
+      ],
+      "mapsTo": "industry.regulatoryBody"
+    },
+    {
+      "id": "feeModel",
+      "prompt": "How do you charge?",
+      "type": "multi_select",
+      "required": false,
+      "options": [
+        { "value": "hourly", "label": "Hourly" },
+        { "value": "fixed", "label": "Fixed fee" },
+        { "value": "contingency", "label": "No win, no fee" },
+        { "value": "retainer", "label": "Retainer" }
+      ],
+      "mapsTo": "industry.feeModel"
+    },
+    {
+      "id": "regulatedDisclosure",
+      "prompt": "Required regulatory statement",
+      "help": "For example \"Authorised and regulated by the Solicitors Regulation Authority, No. 123456\".",
+      "type": "long_text",
+      "required": false,
+      "mapsTo": "industry.regulatedDisclosure"
+    }
+  ]
+}

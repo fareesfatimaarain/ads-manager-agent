@@ -1,0 +1,70 @@
+{
+  "key": "legal",
+  "label": "Legal services advertising",
+  "version": 1,
+  "basedOn": "generic",
+  "description": "Layered on top of the generic set. Outcome prediction and specialist claims are the primary exposure for regulated legal practice.",
+  "rules": [
+    {
+      "id": "leg-outcome-promise",
+      "title": "Predicting or promising a case outcome",
+      "severity": "BLOCK",
+      "mandatory": true,
+      "reason": "No outcome can be promised in a legal matter. Every conduct regulator prohibits this.",
+      "appliesTo": ["headline", "primaryText", "imageConcept"],
+      "match": {
+        "kind": "FORBID_PATTERN",
+        "pattern": "\\b(we will win|guaranteed (win|outcome|result|compensation)|you will (win|receive|get)|certain to win)\\b",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "leg-specialist-claim",
+      "title": "Unaccredited specialist or expert claims",
+      "severity": "FLAG",
+      "mandatory": true,
+      "reason": "\"Specialist\" and \"expert\" are restricted titles in many jurisdictions unless formally accredited.",
+      "appliesTo": ["headline", "primaryText"],
+      "match": { "kind": "FORBID_TERMS", "terms": ["specialist", "expert", "leading authority", "top lawyer"] }
+    },
+    {
+      "id": "leg-no-win-no-fee",
+      "title": "No-win-no-fee without qualification",
+      "severity": "BLOCK",
+      "mandatory": true,
+      "reason": "Conditional fee claims must state that other costs may still apply.",
+      "appliesTo": ["primaryText"],
+      "match": {
+        "kind": "REQUIRE_WHEN",
+        "whenPattern": "\\bno win,? no fee\\b",
+        "whenFlags": "i",
+        "requireOneOf": ["other costs may apply", "terms apply", "subject to terms"]
+      }
+    },
+    {
+      "id": "leg-regulated-disclosure",
+      "title": "Regulatory authorisation statement",
+      "severity": "FLAG",
+      "mandatory": true,
+      "reason": "Regulated legal practices are generally required to state who authorises them.",
+      "appliesTo": ["primaryText"],
+      "match": {
+        "kind": "REQUIRE_ONE_OF",
+        "terms": ["authorised and regulated", "authorized and regulated", "regulated by"]
+      }
+    },
+    {
+      "id": "leg-urgency",
+      "title": "Pressuring a legal decision",
+      "severity": "BLOCK",
+      "mandatory": true,
+      "reason": "Instructing a solicitor is not a decision that may be rushed by an advertising deadline.",
+      "appliesTo": ["headline", "primaryText"],
+      "match": {
+        "kind": "FORBID_PATTERN",
+        "pattern": "\\b(claim|call|sign)\\b.{0,25}\\b(before it's too late|today only|deadline|hurry)\\b",
+        "flags": "i"
+      }
+    }
+  ]
+}

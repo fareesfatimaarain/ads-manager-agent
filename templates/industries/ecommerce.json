@@ -1,0 +1,63 @@
+{
+  "key": "ecommerce",
+  "label": "E-commerce & retail",
+  "version": 1,
+  "complianceTemplate": "ecommerce",
+  "description": "Online stores, DTC brands, and multi-channel retail.",
+  "questions": [
+    {
+      "id": "productCategories",
+      "prompt": "What product categories do you sell?",
+      "type": "multi_text",
+      "required": true,
+      "minItems": 1,
+      "maxItems": 40,
+      "mapsTo": "industry.productCategories"
+    },
+    {
+      "id": "heroSkus",
+      "prompt": "Which products should ads lead with?",
+      "help": "Your best sellers or highest-margin lines. Leave empty to let the system choose.",
+      "type": "multi_text",
+      "required": false,
+      "maxItems": 30,
+      "mapsTo": "industry.heroSkus"
+    },
+    {
+      "id": "promoCadence",
+      "prompt": "How often do you run promotions?",
+      "type": "single_select",
+      "required": true,
+      "options": [
+        { "value": "never", "label": "Never — we don't discount" },
+        { "value": "seasonal", "label": "Seasonal only" },
+        { "value": "monthly", "label": "Roughly monthly" },
+        { "value": "always-on", "label": "Always something running" }
+      ],
+      "mapsTo": "industry.promoCadence"
+    },
+    {
+      "id": "averageOrderValue",
+      "prompt": "Typical order value",
+      "help": "In your account currency. Helps pitch copy at the right buying decision.",
+      "type": "number",
+      "required": false,
+      "mapsTo": "industry.averageOrderValue"
+    },
+    {
+      "id": "shippingPromise",
+      "prompt": "What can you promise about delivery?",
+      "help": "Only what you can consistently meet — delivery claims are a common source of complaints.",
+      "type": "text",
+      "required": false,
+      "mapsTo": "industry.shippingPromise"
+    },
+    {
+      "id": "returnsPolicy",
+      "prompt": "Returns policy, in one line",
+      "type": "text",
+      "required": false,
+      "mapsTo": "industry.returnsPolicy"
+    }
+  ]
+}

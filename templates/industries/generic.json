@@ -1,0 +1,48 @@
+{
+  "key": "generic",
+  "label": "Other / not listed",
+  "version": 1,
+  "complianceTemplate": "generic",
+  "description": "Fallback branch. Used when the stated industry has no template, so onboarding never dead-ends.",
+  "questions": [
+    {
+      "id": "categories",
+      "prompt": "What are your main product or service categories?",
+      "type": "multi_text",
+      "required": true,
+      "minItems": 1,
+      "maxItems": 20,
+      "mapsTo": "industry.categories"
+    },
+    {
+      "id": "pricePositioning",
+      "prompt": "Where do you sit on price?",
+      "type": "single_select",
+      "required": true,
+      "options": [
+        { "value": "budget", "label": "Budget" },
+        { "value": "mid", "label": "Mid-market" },
+        { "value": "premium", "label": "Premium" },
+        { "value": "luxury", "label": "Luxury" }
+      ],
+      "mapsTo": "industry.pricePositioning"
+    },
+    {
+      "id": "regulatoryNotes",
+      "prompt": "Is your advertising subject to any regulator or industry code?",
+      "help": "If yes, name it — we will apply stricter defaults and you can add specific rules afterwards.",
+      "type": "long_text",
+      "required": false,
+      "mapsTo": "industry.regulatoryNotes"
+    },
+    {
+      "id": "proofPoints",
+      "prompt": "What proof can you substantiate?",
+      "help": "Only claims you can evidence. Anything listed here may be used in copy; anything not listed will not be.",
+      "type": "multi_text",
+      "required": false,
+      "maxItems": 20,
+      "mapsTo": "industry.proofPoints"
+    }
+  ]
+}

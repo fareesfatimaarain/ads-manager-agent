@@ -1,0 +1,57 @@
+{
+  "key": "ecommerce",
+  "label": "Retail & e-commerce advertising",
+  "version": 1,
+  "basedOn": "generic",
+  "description": "Layered on top of the generic set. Pricing accuracy and delivery promises are the primary exposure in retail advertising.",
+  "rules": [
+    {
+      "id": "ec-was-now-pricing",
+      "title": "Reference pricing without a qualifying period",
+      "severity": "FLAG",
+      "mandatory": true,
+      "reason": "\"Was/now\" pricing requires the higher price to have been genuinely charged for a qualifying period. State it or drop the comparison.",
+      "appliesTo": ["headline", "primaryText"],
+      "match": {
+        "kind": "FORBID_PATTERN",
+        "pattern": "\\b(was|rrp|worth)\\s*[£$€]?\\s?\\d",
+        "flags": "i"
+      }
+    },
+    {
+      "id": "ec-delivery-promise",
+      "title": "Absolute delivery promises",
+      "severity": "FLAG",
+      "mandatory": true,
+      "reason": "Delivery claims must be consistently achievable. Absolute wording invites complaints on the exceptions.",
+      "appliesTo": ["headline", "primaryText"],
+      "match": {
+        "kind": "FORBID_TERMS",
+        "terms": ["always next day", "guaranteed delivery", "never late", "instant delivery"]
+      }
+    },
+    {
+      "id": "ec-free-shipping-conditions",
+      "title": "Free shipping with unstated conditions",
+      "severity": "FLAG",
+      "mandatory": false,
+      "reason": "If free delivery has a spend threshold, the ad should say so.",
+      "appliesTo": ["headline", "primaryText"],
+      "match": {
+        "kind": "REQUIRE_WHEN",
+        "whenPattern": "\\bfree (delivery|shipping|postage)\\b",
+        "whenFlags": "i",
+        "requireOneOf": ["over", "orders above", "when you spend", "on all orders", "no minimum"]
+      }
+    },
+    {
+      "id": "ec-stock-scarcity",
+      "title": "Stock scarcity claims",
+      "severity": "FLAG",
+      "mandatory": false,
+      "reason": "Scarcity claims must reflect real stock levels.",
+      "appliesTo": ["headline", "primaryText"],
+      "match": { "kind": "FORBID_TERMS", "terms": ["almost gone", "selling fast", "nearly sold out", "only a few remaining"] }
+    }
+  ]
+}

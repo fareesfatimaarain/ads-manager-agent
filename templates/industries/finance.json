@@ -1,0 +1,70 @@
+{
+  "key": "finance",
+  "label": "Financial services",
+  "version": 1,
+  "complianceTemplate": "finance",
+  "description": "Advisers, lenders, insurers, fintech, and investment products.",
+  "questions": [
+    {
+      "id": "productTypes",
+      "prompt": "What financial products or services do you offer?",
+      "type": "multi_select",
+      "required": true,
+      "minItems": 1,
+      "options": [
+        { "value": "advice", "label": "Financial advice / planning" },
+        { "value": "investment", "label": "Investment products" },
+        { "value": "lending", "label": "Lending / credit" },
+        { "value": "mortgage", "label": "Mortgages" },
+        { "value": "insurance", "label": "Insurance" },
+        { "value": "banking", "label": "Banking / payments" },
+        { "value": "crypto", "label": "Digital assets" }
+      ],
+      "mapsTo": "industry.productTypes"
+    },
+    {
+      "id": "regulatoryBody",
+      "prompt": "Which authority regulates you?",
+      "type": "single_select",
+      "required": true,
+      "options": [
+        { "value": "fca-uk", "label": "FCA (United Kingdom)" },
+        { "value": "sec-us", "label": "SEC (United States)" },
+        { "value": "finra-us", "label": "FINRA (United States)" },
+        { "value": "asic-au", "label": "ASIC (Australia)" },
+        { "value": "esma-eu", "label": "ESMA (European Union)" },
+        { "value": "other", "label": "Other / multiple" },
+        { "value": "unregulated", "label": "Not regulated" }
+      ],
+      "mapsTo": "industry.regulatoryBody"
+    },
+    {
+      "id": "registrationNumber",
+      "prompt": "Registration or authorisation number",
+      "help": "Usually required in financial promotions. Added as a required disclosure.",
+      "type": "text",
+      "required": false,
+      "mapsTo": "industry.registrationNumber"
+    },
+    {
+      "id": "riskWarning",
+      "prompt": "Your standard risk warning",
+      "help": "Verbatim. It will be required in every ad that mentions returns or investment.",
+      "type": "long_text",
+      "required": false,
+      "mapsTo": "industry.riskWarning"
+    },
+    {
+      "id": "targetInvestorType",
+      "prompt": "Who may you market to?",
+      "type": "single_select",
+      "required": false,
+      "options": [
+        { "value": "retail", "label": "Retail customers" },
+        { "value": "sophisticated", "label": "Sophisticated / high net worth only" },
+        { "value": "professional", "label": "Professional / institutional only" }
+      ],
+      "mapsTo": "industry.targetInvestorType"
+    }
+  ]
+}

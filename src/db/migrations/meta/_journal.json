@@ -1,0 +1,62 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1785919904135,
+      "tag": "0000_init",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1785942087604,
+      "tag": "0001_client_automation_pause",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1785942261430,
+      "tag": "0002_offers_and_creative_drafts",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1785960186260,
+      "tag": "0003_brand_governance",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1786208105356,
+      "tag": "0004_lyrical_stone_men",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1786437440888,
+      "tag": "0005_colossal_shriek",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1786438255100,
+      "tag": "0006_jazzy_maddog",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1786438436361,
+      "tag": "0007_far_wendell_vaughn",
+      "breakpoints": true
+    }
+  ]
+}

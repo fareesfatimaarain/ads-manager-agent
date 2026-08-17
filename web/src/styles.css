@@ -1,10 +1,19 @@
 /*
  * Design system.
  *
- * The identity is carried over from the client-facing report: warm paper stock, ink, and a
- * muted rust accent, with a deep green for "good" and an ochre for "waiting on a human". It is
- * deliberately not the default dashboard palette — this is a control room for money, and it
- * should read like an instrument panel rather than a generic SaaS product.
+ * Fuchesi family palette — Ads.
+ *
+ * Warm paper stock and ink, shared with every other Fuchesi product so a client running two of
+ * them recognises the same surface. Exactly one thing is unique here: the accent. Ads is teal —
+ * measurement and instrumentation — replacing the previous rust, which sat too close to the
+ * danger colour to carry interactive controls in a product about spending money.
+ *
+ * The accent hue is deliberately chosen from the part of the wheel the semantic colours do not
+ * occupy: green stays "good", ochre stays "waiting on a human", red stays "wrong". An accent
+ * that collides with any of those turns every button into a status message.
+ *
+ * It is deliberately not the default dashboard palette — this is a control room for money, and
+ * it should read like an instrument panel rather than a generic SaaS product.
  *
  * Type: a serif for display, so headings read as editorial rather than UI chrome; a system
  * sans for interface text; and tabular-lining numerals everywhere a figure appears, so columns
@@ -14,17 +23,19 @@
 :root {
   color-scheme: light dark;
 
-  --paper: #faf7f1;
+  --paper: #f7f5f1;
   --surface: #ffffff;
-  --surface-2: #f3eee4;
-  --ink: #1a1915;
+  --surface-2: #f0ede6;
+  --ink: #191814;
   --ink-2: #4a4739;
-  --ink-3: #7d7768;
-  --rule: #e2dbcc;
-  --rule-2: #efe9dc;
+  --ink-3: #6e6a60;
+  --rule: #e1dcd1;
+  --rule-2: #ebe6dc;
 
-  --rust: #9a4a28;
-  --rust-bg: #f5e6dd;
+  /* The accent. `--rust` keeps its name because 800 lines below reference it;
+     it is teal now, and `--accent` is the name new code should use. */
+  --rust: #0e6f7a;
+  --rust-bg: #dff0f1;
   --green: #3a5347;
   --green-bg: #e3ebe4;
   --ochre: #7d6318;
@@ -49,21 +60,33 @@
   --shadow-lift: 0 2px 4px rgba(26, 25, 21, 0.07), 0 8px 24px rgba(26, 25, 21, 0.08);
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* Family role names. The Fuchesi products share this vocabulary; the
+     product-specific names above are what this codebase already uses. */
+  --bg: var(--paper);
+  --fg: var(--ink);
+  --fg-muted: var(--ink-2);
+  --fg-subtle: var(--ink-3);
+  --border: var(--rule);
+  --accent: var(--rust);
+  --accent-muted: var(--rust-bg);
+  --ok: var(--green);
+  --warn: var(--ochre);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --paper: #14130f;
-    --surface: #1c1a15;
-    --surface-2: #23201a;
-    --ink: #ece6da;
-    --ink-2: #b3ab9a;
-    --ink-3: #857e6e;
-    --rule: #322e26;
-    --rule-2: #2a2620;
+    --surface: #1d1b16;
+    --surface-2: #24211b;
+    --ink: #edeae2;
+    --ink-2: #b0a99b;
+    --ink-3: #8a8375;
+    --rule: #2e2b24;
+    --rule-2: #262319;
 
-    --rust: #d98b64;
-    --rust-bg: #33211a;
+    --rust: #5cbcc4;
+    --rust-bg: #102b2e;
     --green: #8fb39c;
     --green-bg: #1c2721;
     --ochre: #cfae55;

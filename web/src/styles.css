@@ -1,19 +1,14 @@
 /*
  * Design system.
  *
- * Fuchesi family palette — Ads.
+ * Fuchesi theme — identical across Ads, Leads and SMM.
  *
- * Warm paper stock and ink, shared with every other Fuchesi product so a client running two of
- * them recognises the same surface. Exactly one thing is unique here: the accent. Ads is teal —
- * measurement and instrumentation — replacing the previous rust, which sat too close to the
- * danger colour to carry interactive controls in a product about spending money.
+ * Values below are the canonical Leads palette and scales, expressed in this file's existing
+ * variable names so 800 lines of rules underneath keep working. The products are meant to be
+ * indistinguishable in look and feel, so a change here belongs in all three.
  *
- * The accent hue is deliberately chosen from the part of the wheel the semantic colours do not
- * occupy: green stays "good", ochre stays "waiting on a human", red stays "wrong". An accent
- * that collides with any of those turns every button into a status message.
- *
- * It is deliberately not the default dashboard palette — this is a control room for money, and
- * it should read like an instrument panel rather than a generic SaaS product.
+ * Indigo is the shared accent. Ads previously carried rust, then teal; neither survives the
+ * decision to make the three products uniform rather than sibling-branded.
  *
  * Type: a serif for display, so headings read as editorial rather than UI chrome; a system
  * sans for interface text; and tabular-lining numerals everywhere a figure appears, so columns
@@ -27,25 +22,29 @@
   --surface: #ffffff;
   --surface-2: #f0ede6;
   --ink: #191814;
-  --ink-2: #4a4739;
-  --ink-3: #6e6a60;
+  --ink-2: #6e6a60;
+  --ink-3: #9a9384;
   --rule: #e1dcd1;
-  --rule-2: #ebe6dc;
+  --rule-2: #cbc4b4;
 
   /* The accent. `--rust` keeps its name because 800 lines below reference it;
-     it is teal now, and `--accent` is the name new code should use. */
-  --rust: #0e6f7a;
-  --rust-bg: #dff0f1;
-  --green: #3a5347;
-  --green-bg: #e3ebe4;
-  --ochre: #7d6318;
-  --ochre-bg: #f3ecd4;
+     the value is the shared Fuchesi indigo, and `--accent` is the name new code
+     should use. */
+  --rust: #2a50c8;
+  --rust-bg: #e8ecfa;
+  --green: #168054;
+  --green-bg: #e8f6ee;
+  --ochre: #a56a0a;
+  --ochre-bg: #fcf5e6;
   --slate: #45505c;
   --slate-bg: #e6eaee;
 
-  --display: Georgia, 'Palatino Linotype', Palatino, 'Book Antiqua', serif;
-  --sans: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-  --mono: 'Cascadia Mono', Consolas, 'SF Mono', Menlo, monospace;
+  /* The family has no serif display face; --display resolves to the same sans so
+     existing rules keep working and headings match Leads. */
+  --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --display: var(--sans);
+  --mono: ui-monospace, 'SF Mono', 'Cascadia Mono', 'Segoe UI Mono', Menlo, Consolas, monospace;
 
   --s1: 4px;
   --s2: 8px;
@@ -55,7 +54,7 @@
   --s6: 32px;
   --s7: 48px;
 
-  --radius: 3px;
+  --radius: 5px;
   --shadow: 0 1px 2px rgba(26, 25, 21, 0.05), 0 2px 8px rgba(26, 25, 21, 0.04);
   --shadow-lift: 0 2px 4px rgba(26, 25, 21, 0.07), 0 8px 24px rgba(26, 25, 21, 0.08);
 
@@ -83,14 +82,14 @@
     --ink-2: #b0a99b;
     --ink-3: #8a8375;
     --rule: #2e2b24;
-    --rule-2: #262319;
+    --rule-2: #453f35;
 
-    --rust: #5cbcc4;
-    --rust-bg: #102b2e;
-    --green: #8fb39c;
-    --green-bg: #1c2721;
-    --ochre: #cfae55;
-    --ochre-bg: #2b2517;
+    --rust: #8aa6ff;
+    --rust-bg: #1a2033;
+    --green: #3dbe82;
+    --green-bg: #11261e;
+    --ochre: #d99b3e;
+    --ochre-bg: #292010;
     --slate: #9aa8b6;
     --slate-bg: #1e242a;
 
@@ -108,8 +107,8 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
-  font-size: 14px;
-  line-height: 1.55;
+  font-size: 13px;
+  line-height: 20px;
   -webkit-font-smoothing: antialiased;
   font-variant-numeric: tabular-nums lining-nums;
 }
